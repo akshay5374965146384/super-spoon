@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CircleConnect Group official website" />
+  <title>Home | www.circleconnect.com</title>
+  <link rel="icon" href="logo.jpg" type="jpg">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #182848;
+      --accent: #2980b9;
+      --bg-light: #e9f0fa;
+      --glass-bg: rgba(255,255,255,0.18);
+      --glass-border: rgba(255,255,255,0.24);
+      --nav-bg: rgba(255,255,255,0.90);
+      --shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.18);
+      --white: #fff;
+      --danger: #e74c3c;
+      --golden: #ffd700;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+      color: #faf6f6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    header {
+      position: relative;
+      padding: 2.5rem 1rem 1.5rem;
+      background: linear-gradient(120deg, var(--primary) 48%, var(--accent) 100%);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      border-bottom-left-radius: 36px;
+      border-bottom-right-radius: 36px;
+      overflow: visible;
+    }
+
+    header h1 { font-size: 2.6rem; margin-bottom: 0.4rem; font-weight: 700; text-shadow: 0 4px 30px rgba(7, 7, 7, 0.999); }
+    header p { font-size: 1.05rem; margin: 8px 0 0 0; }
+
+    #user-display {
+      position: absolute; top: 24px; right: 150px;
+      background: linear-gradient(90deg, var(--accent) 60%, var(--golden) 100%);
+      color: var(--white); padding: 10px 22px; border-radius: 17px;
+      box-shadow: var(--shadow); font-weight: 700; font-size: 1rem;
+      border: 2px solid rgba(255,255,255,0.18);
+    }
+
+    #logout-btn {
+      position: absolute; top: 24px; right: 32px;
+      background: var(--danger); color: #fff;
+      padding: 8px 16px; border: none; border-radius: 12px;
+      cursor: pointer; font-weight: 700; font-size: 0.95rem;
+      box-shadow: var(--shadow); transition: 0.2s;
+    }
+    #logout-btn:hover { background: #c0392b; }
+
+    nav {
+      background: var(--nav-bg); backdrop-filter: blur(7px); padding: 1rem 0.5rem;
+      text-align: center; box-shadow: 0 3px 24px 0 rgba(52, 73, 94, 0.11);
+      border-radius: 0 0 24px 24px; margin-top: -16px; position: sticky; top: 0; z-index: 100;
+      border-bottom: 1.5px solid var(--accent);
+    }
+
+    nav a {
+      margin: 0 18px; text-decoration: none; color: var(--primary);
+      background: linear-gradient(90deg, var(--accent), #7ee8fa 100%);
+      background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-weight: bold; font-size: 1rem; position: relative;
+    }
+    nav a::after { content: ''; position: absolute; width: 0%; height: 3px; bottom: -7px; left: 0; background: linear-gradient(100deg, var(--golden), var(--accent)); border-radius: 3px; transition: width 0.3s; }
+    nav a:hover::after, nav a.active::after { width: 100%; }
+
+    .ganesh-section { display: flex; flex-direction: column; align-items: center; margin: 2.5rem 0; }
+    .ganesh-section img { max-width: 340px; border-radius: 20px; box-shadow: 0 8px 28px rgba(44,62,80,0.23); border: 2px solid var(--golden); margin-bottom: 1rem; background: var(--white); }
+
+    .container { max-width: 950px; margin: 2.7rem auto; padding: 2rem 2rem; border-radius: 28px; background: var(--glass-bg); box-shadow: var(--shadow); border: 1.5px solid var(--glass-border); backdrop-filter: blur(9px); }
+
+    footer { margin-top: 3.5rem; text-align: center; font-size: 1rem; color: #888; padding: 1rem 0; background: linear-gradient(90deg, var(--white), #e9f0fa 95%); border-radius: 9px 9px 0 0; }
+
+    #mute-btn { position: fixed; bottom: 18px; right: 24px; background: linear-gradient(90deg, var(--accent) 60%, var(--golden)); color: white; border: none; padding: 11px 22px; border-radius: 22px; font-weight: 700; font-size: 1rem; cursor: pointer; box-shadow: var(--shadow); z-index: 999; transition: background 0.21s; }
+    #mute-btn:hover { background: linear-gradient(269deg, var(--golden) 30%, var(--accent) 100%); color: #2d323d; border: 1.5px solid var(--accent); }
+    audio { display: none; }
+
+    @media (max-width: 700px) {
+      header h1 { font-size: 1.6rem;}
+      #user-display { top: 8px; right: 90px; font-size: .85rem; padding: 6px 12px;}
+      #logout-btn { top: 8px; right: 16px; font-size: .8rem; padding: 6px 10px;}
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop class="video-bg" poster="images/bg-fallback.jpg">
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+  <audio id="bg-audio" autoplay loop preload="auto">
+    <source src="bg-audio.mp3" type="mp3" />
+  </audio>
+  <button id="mute-btn">🔊 Mute</button>
+
+  <header>
+    <h1>Welcome to CircleConnect Group 🌍</h1>
+    <p>Akshay, Ashwani, & Vicky — We all three friends are welcoming you to our CircleConnect group website.</p>
+
+    <div id="user-display">Welcome, <span id="username-display">Guest</span></div>
+    <button id="logout-btn">Logout</button>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="Gallery.html">Gallery</a>
+    <a href="tours_and_travels.html">Tours & Travels</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join WhatsApp Group</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="ganesh-section">
+    <img src="https://wallpapercave.com/wp/wp4835728.jpg" alt="Lord Ganesha">
+    <h2>Lord Ganesha: The Remover of Obstacles</h2>
+    <p>May Ganpati Bappa bless our CircleConnect group with unity, creativity, and joy.</p>
+  </div>
+
+  <div class="container">
+    <h2>Home</h2>
+    <p>This is the homepage of CircleConnect group. Explore the group.</p>
+    <p>सर्कल कनेक्ट सिर्फ एक ग्रुप नहीं है — यह एक परिवार है...</p>
+    <p>हमारे ग्रुप में आपका स्वागत है...</p>
+    <h2>Our Mission</h2>
+    <p>To foster a supportive and engaging community...</p>
+    <p>हमारा मिशन एक ऐसा समुदाय बनाना है...</p>
+    <h2>Some beautiful lines for our CircleConnect group</h2>
+    <p>Circle Connect isn’t just a WhatsApp group—it’s a family... Magic happens when hearts connect.</p>
+  </div>
+
+  <footer>
+    <p>&copy; circleconnect.com</p>
+  </footer>
+
+  <script>
+    const displaySpan = document.getElementById("username-display");
+    const audio = document.getElementById("bg-audio");
+    const muteBtn = document.getElementById("mute-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    // Check if user is logged in
+    const username = localStorage.getItem("loggedInUser");
+    if(!username){
+      window.location.href = "login.html"; // Redirect if not logged in
+    } else {
+      const hours = new Date().getHours();
+      const greeting = hours < 12 ? "Good Morning" : hours < 18 ? "Good Afternoon" : "Good Evening";
+      displaySpan.textContent = `${greeting}, ${username.charAt(0).toUpperCase() + username.slice(1)}`;
+
+      // Auto-play audio
+      audio.play().catch(()=>{});
+    }
+
+    // Logout
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    });
+
+    // Mute toggle
+    if(localStorage.getItem('audioMuted') === 'true') {
+      audio.muted = true; muteBtn.textContent = "🔈 Unmute";
+    }
+
+    muteBtn.addEventListener("click", () => {
+      audio.muted = !audio.muted;
+      localStorage.setItem('audioMuted', audio.muted);
+      muteBtn.textContent = audio.muted ? "🔈 Unmute" : "🔊 Mute";
+    });
+
+    // Highlight active nav
+    document.querySelectorAll('nav a').forEach(link => {
+      if(link.href === window.location.href){ link.classList.add('active'); }
+    });
+  </script>
+</body>
+</html>

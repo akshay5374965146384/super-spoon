@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join Circle Connect | Premium Interactive</title>
+
+<!-- Favicon / Logo -->
+<link rel="icon" href="logo.jpg" type="jpg">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary:#182848; --accent:#2980b9; --highlight:#00c6ff;
+  --bg-light:#f4f9ff; --glass-bg:rgba(255,255,255,0.15); --glass-border:rgba(255,255,255,0.25);
+  --shadow:0 12px 36px rgba(0,0,0,0.2); --white:#fff; --golden:#ffd700;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  background: linear-gradient(-45deg,#182848,#2980b9,#00c6ff,#f4f9ff);
+  background-size: 600% 600%;
+  animation:gradientBG 20s ease infinite;
+  color:#222; overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+header{
+  background:linear-gradient(120deg,var(--primary),var(--accent));
+  color:var(--white); padding:2.5rem 1rem; text-align:center;
+  border-radius:0 0 40px 40px; box-shadow:var(--shadow);
+  transition:all 0.3s ease;
+}
+header h1{font-size:2.6rem; letter-spacing:0.08em; text-shadow:0 4px 20px rgba(0,0,0,0.4);}
+
+nav{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);padding:1.2rem 0;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);
+  border-bottom:2px solid var(--accent);
+}
+nav a{
+  margin:0 18px;text-decoration:none;font-weight:600;font-size:1.05rem;
+  background:linear-gradient(90deg,var(--accent),#7ee8fa);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  position:relative;transition:0.3s ease;
+}
+nav a:hover{transform:translateY(-2px);}
+nav a::after{
+  content:""; position:absolute;width:0;height:3px; background:var(--golden); left:0; bottom:-8px;
+  border-radius:4px; transition:width 0.3s ease;
+}
+nav a:hover::after{width:100%;}
+
+.hero{
+  position:relative; height:50vh;
+  display:flex; justify-content:center; align-items:center; text-align:center;
+  font-size:2rem; font-weight:700; color:var(--white);
+  text-shadow:2px 2px 12px rgba(0,0,0,0.6);
+  margin:2rem auto; max-width:900px; border-radius:20px;
+  background: linear-gradient(135deg, rgba(24,40,72,0.7), rgba(41,128,185,0.6));
+  backdrop-filter: blur(4px);
+  padding:2rem;
+}
+.hero span{color:#ffd700;}
+
+.container{
+  max-width:900px;margin:2rem auto;padding:3rem;border-radius:28px;
+  background:var(--glass-bg);border:1.5px solid var(--glass-border);
+  box-shadow:var(--shadow);backdrop-filter:blur(18px);text-align:center;
+  transition: transform 0.3s ease;
+  position:relative; overflow:hidden;
+}
+.container h2{font-size:2.2rem;margin-bottom:1rem;color:var(--primary);}
+.container p{font-size:1.15rem;line-height:1.7;margin-bottom:2rem;}
+
+.social-section h3{font-size:1.6rem;color:var(--accent);margin-bottom:1.2rem;}
+.social-icons{
+  display:flex;justify-content:center;gap:40px;flex-wrap:wrap;transition:0.3s;
+}
+.social-icons a img{
+  width:60px;height:60px;border-radius:50%;
+  transition:transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s;
+}
+.social-icons a img:hover{
+  transform:scale(1.2) rotate(10deg);
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  filter:drop-shadow(0 0 8px var(--highlight));
+}
+
+footer{
+  margin:3rem 0 2rem;text-align:center;font-size:1rem;color:#666;font-weight:600;
+}
+footer::before{
+  content:""; display:block;width:80%;height:3px;background:linear-gradient(to right,var(--accent),var(--highlight));
+  margin:0 auto 1rem;border-radius:50px;
+}
+
+.particles{
+  position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+
+@media(max-width:768px){
+  header h1{font-size:2rem;}
+  nav a{margin:0 10px;font-size:0.95rem;}
+  .hero{font-size:1.4rem;padding:1.5rem;height:auto;}
+  .container{margin:1.5rem;padding:2rem;}
+  .container h2{font-size:1.8rem;}
+  .container p{font-size:1rem;}
+  .social-icons{gap:25px;}
+  .social-icons a img{width:50px;height:50px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Join Circle Connect</h1>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="tours_and_travels.html">Tours & Travels</a>
+  <a href="about.html">About</a>
+  <a href="join.html">Join WhatsApp Group</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<div class="hero">
+  <span id="typing-text"></span>
+</div>
+
+<div class="container">
+  <h2>Be Part of the Circle</h2>
+  <p>Connect with us on social media and stay updated with the latest events, memories, and community vibes.</p>
+
+  <div class="social-section">
+    <h3>Follow & Chat With Us</h3>
+    <div class="social-icons">
+      <a href="https://wa.me/+919304776439" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+      </a>
+      <a href="https://instagram.com/akshayrj8825" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+      </a>
+      <a href="https://facebook.com/akshayrj8825" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Circle Connect. Made with ❤️ by Akshay & Team.
+</footer>
+
+<div class="particles" id="particles"></div>
+
+<script>
+// Particles Effect
+const particlesContainer=document.getElementById('particles');
+for(let i=0;i<70;i++){
+  const p=document.createElement('div');
+  p.style.position='absolute';
+  p.style.width=p.style.height=Math.random()*6+4+'px';
+  p.style.background='rgba(255,255,255,'+Math.random()+')';
+  p.style.borderRadius='50%';
+  p.style.top=Math.random()*100+'%';
+  p.style.left=Math.random()*100+'%';
+  p.style.animation='float '+(Math.random()*6+4)+'s linear infinite';
+  particlesContainer.appendChild(p);
+}
+
+// Click Sound Effect
+const clickSound = new Audio('https://www.soundjay.com/buttons/sounds/button-16.mp3');
+document.querySelectorAll('.social-icons a, nav a').forEach(el=>{
+  el.addEventListener('click',()=>{clickSound.play();});
+});
+
+// Typing Text Effect
+const texts = ["Welcome to Circle Connect", "Explore. Connect. Create.", "Join Our Community Today!"];
+let count = 0; let index = 0; let currentText = ""; let letter = "";
+(function type(){
+  if(count === texts.length){count = 0;}
+  currentText = texts[count];
+  letter = currentText.slice(0, ++index);
+  document.getElementById("typing-text").textContent = letter;
+  if(letter.length === currentText.length){count++; index=0; setTimeout(type,1500);}
+  else{setTimeout(type,120);}
+})();
+</script>
+
+<style>
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-25px);}
+  100%{transform:translateY(0);}
+}
+</style>
+
+</body>
+</html>

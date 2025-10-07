@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | CircleConnect</title>
+  <!-- Favicon / Logo -->
+<link rel="icon" href="logo.jpg" type="jpg">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #182848;
+      --accent: #2980b9;
+      --bg-light: #e9f0fa;
+      --glass-bg: rgba(255,255,255,0.18);
+      --glass-border: rgba(255,255,255,0.24);
+      --nav-bg: rgba(255,255,255,0.90);
+      --shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.18);
+      --white: #fff;
+      --golden: #ffd700;
+    }
+
+    html {
+      height: 100%;
+      background: linear-gradient(135deg, #dbe6fd 0%, #a1c4fd 100%);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+      background: transparent;
+      color: #222;
+      position: relative;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 2.5rem 1rem 1.5rem;
+      background: linear-gradient(120deg, var(--primary) 48%, var(--accent) 100%);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      border-bottom-left-radius: 36px;
+      border-bottom-right-radius: 36px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      font-size: 1.18rem;
+      margin: 0.7rem 0 0 0;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      background: var(--nav-bg);
+      backdrop-filter: blur(7px);
+      padding: 1.1rem 0.5rem;
+      text-align: center;
+      box-shadow: 0 3px 24px 0 rgba(52, 73, 94, 0.11);
+      border-radius: 0 0 24px 24px;
+      margin-top: -16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1.5px solid var(--accent);
+    }
+    nav a {
+      margin: 0 22px;
+      text-decoration: none;
+      color: var(--primary);
+      background: linear-gradient(90deg, var(--accent), #7ee8fa 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      font-size: 1.07rem;
+      position: relative;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 3px;
+      bottom: -7px;
+      left: 0;
+      background: linear-gradient(100deg, var(--golden), var(--accent));
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .project-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.24;
+      animation: floatUp 9s infinite linear;
+      will-change: transform;
+      mix-blend-mode: screen;
+      background: linear-gradient(90deg, var(--accent), var(--golden));
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.85);}
+      100% { transform: translateY(-10vh) scale(1.1);}
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto 2rem;
+      padding: 2.3rem 1.8rem;
+      background: var(--glass-bg);
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      border: 1.5px solid var(--glass-border);
+      backdrop-filter: blur(7px);
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-bottom: 2.5px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+      letter-spacing: 0.6px;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--golden) 90%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 1.11rem;
+      line-height: 1.95;
+      color: #f6f8fb;
+      margin: 1.03rem 0;
+      letter-spacing: 0.1px;
+    }
+
+    footer {
+      margin-top: 3.4rem;
+      text-align: center;
+      font-size: 1.02rem;
+      color: #888;
+      padding: 1.13rem 0;
+      background: linear-gradient(90deg, var(--white), #e9f0fa 95%);
+      box-shadow: 0 1px 12px rgba(53, 59, 72, 0.068);
+      border-radius: 9px 9px 0 0;
+      letter-spacing: .1rem;
+      font-weight: 700;
+    }
+    @media (max-width: 700px) {
+      main { padding: 1.1rem 0.4rem;}
+      header h1 { font-size: 1.5rem;}
+      nav a { margin: 0 7px; font-size: 0.95rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Premium Background Particles -->
+  <div class="project-bg" id="project-bg"></div>
+  <header>
+    <h1>About CircleConnect 🌐</h1>
+    <p>Where friendship meets creativity and innovation</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="Gallery.html">Gallery</a>
+    <a href="tours_and_travels.html">Tours & Travels</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join WhatsApp Group</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main>
+    <h2>Who We Are</h2>
+    <p>CircleConnect is more than just a group — it's a movement of creativity, unity, and emotional design. Founded by Akshay, Ashwani, and Vicky, our mission is to build apps and experiences that reflect our bond and inspire others.</p>
+
+    <h2>Our Vision</h2>
+    <p>We believe in blending technology with emotion. Whether it's a login portal with surreal UI or a meme gallery that makes you smile, every project is a reflection of our friendship and passion.</p>
+
+    <h2>Why CircleConnect?</h2>
+    <p>Because when hearts connect, magic happens. And that magic… is CircleConnect.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 circleconnect</p>
+  </footer>
+
+  <script>
+    // Premium: Animated particles background
+    function randomInRange(a, b) {
+      return a + Math.random() * (b - a);
+    }
+    const particleColors = ["#eab308", "#2980b9", "#ffd700", "#96e6a1"];
+    const nParticles = 19;
+    const projectBg = document.getElementById("project-bg");
+    for (let i = 0; i < nParticles; i++) {
+      const p = document.createElement("div");
+      p.classList.add("particle");
+      const size = randomInRange(18, 44);
+      p.style.width = size + "px";
+      p.style.height = size + "px";
+      p.style.left = randomInRange(0, 95) + "vw";
+      p.style.animationDelay = (Math.random() * 7) + "s";
+      p.style.background = `radial-gradient(circle at 30% 50%, ${particleColors[i % particleColors.length]}, transparent 70%)`;
+      projectBg.appendChild(p);
+    }
+  </script>
+</body>
+</html>

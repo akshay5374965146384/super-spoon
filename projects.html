@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | CircleConnect</title>
+  <!-- Favicon / Logo -->
+<link rel="icon" href="logo.jpg" type="jpg">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #182848;
+      --accent: #2980b9;
+      --bg-light: #e9f0fa;
+      --glass-bg: rgba(255,255,255,0.18);
+      --glass-border: rgba(255,255,255,0.24);
+      --nav-bg: rgba(255,255,255,0.90);
+      --shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.18);
+      --white: #fff;
+      --golden: #ffd700;
+    }
+
+    html {
+      height: 100%;
+      background: linear-gradient(135deg, #dbe6fd 0%, #a1c4fd 100%);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+      background: transparent;
+      color: #222;
+      position: relative;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 2.5rem 1rem 1.5rem;
+      background: linear-gradient(120deg, var(--primary) 48%, var(--accent) 100%);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      border-bottom-left-radius: 36px;
+      border-bottom-right-radius: 36px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      font-size: 1.18rem;
+      margin: 0.7rem 0 0 0;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      background: var(--nav-bg);
+      backdrop-filter: blur(7px);
+      padding: 1.1rem 0.5rem;
+      text-align: center;
+      box-shadow: 0 3px 24px 0 rgba(52, 73, 94, 0.11);
+      border-radius: 0 0 24px 24px;
+      margin-top: -16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1.5px solid var(--accent);
+    }
+    nav a {
+      margin: 0 22px;
+      text-decoration: none;
+      color: var(--primary);
+      background: linear-gradient(90deg, var(--accent), #7ee8fa 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      font-size: 1.07rem;
+      position: relative;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 3px;
+      bottom: -7px;
+      left: 0;
+      background: linear-gradient(100deg, var(--golden), var(--accent));
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .project-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.24;
+      animation: floatUp 9s infinite linear;
+      will-change: transform;
+      mix-blend-mode: screen;
+      background: linear-gradient(90deg, var(--accent), var(--golden));
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.85);}
+      100% { transform: translateY(-10vh) scale(1.1);}
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto 2rem;
+      padding: 2.3rem 1.8rem;
+      background: var(--glass-bg);
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      border: 1.5px solid var(--glass-border);
+      backdrop-filter: blur(7px);
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    h2, h3 {
+      color: var(--primary);
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-bottom: 2.5px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+      letter-spacing: 0.6px;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--golden) 90%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 1.11rem;
+      line-height: 1.95;
+      color: #f6f8fb;
+      margin: 1.03rem 0;
+      letter-spacing: 0.1px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      background: #ecf0f1d0;
+      margin: 0.55rem 0;
+      padding: 0.85rem 1.3rem;
+      border-radius: 9px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      font-weight: 500;
+      font-size: 1.03rem;
+      backdrop-filter: blur(2px);
+      border-left: 3px solid var(--accent);
+      transition: background 0.25s;
+    }
+    ul li:hover {
+      background: #eaf6ff;
+    }
+    .desc {
+      color: #274060;
+      font-size: .98rem;
+      font-style: italic;
+      margin-top: -0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .coming-soon {
+      font-size: 1.08rem;
+      color: var(--golden);
+      background: var(--accent);
+      display: inline-block;
+      padding: 0.4em 1em;
+      border-radius: 17px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(25,116,253,0.06);
+      margin-bottom: .7rem;
+      margin-top: .2rem;
+      letter-spacing: 1px;
+    }
+    footer {
+      margin-top: 3.4rem;
+      text-align: center;
+      font-size: 1.02rem;
+      color: #888;
+      padding: 1.13rem 0;
+      background: linear-gradient(90deg, var(--white), #e9f0fa 95%);
+      box-shadow: 0 1px 12px rgba(53, 59, 72, 0.068);
+      border-radius: 9px 9px 0 0;
+      letter-spacing: .1rem;
+      font-weight: 700;
+    }
+    @media (max-width: 700px) {
+      main { padding: 1.1rem 0.4rem;}
+      header h1 { font-size: 1.5rem;}
+      nav a { margin: 0 7px; font-size: 0.95rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Premium Background Particles -->
+  <div class="project-bg" id="project-bg"></div>
+  <header>
+    <h1>Our Projects 🚀</h1>
+    <p>Innovative, surreal, and meme-infused creations for the CircleConnect community group</p>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="Gallery.html">Gallery</a>
+    <a href="tours_and_travels.html">Tours & Travels</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join WhatsApp Group</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <main>
+    <h2>★ Featured Project</h2>
+    <p>
+      <strong>Blarinacaputina Login Portal</strong>
+      <span class="coming-soon">Coming Soon!</span>
+      <br>
+      <span class="desc">
+        A surreal UI with secret meme modes, blending playful design with top security for the ultimate login adventure.
+      </span>
+    </p>
+    <h3>Other Projects</h3>
+    <ul>
+      <li>Python GUI Calculator with Rage Mode<br>
+        <span class="desc">Classic functions plus a secret “rage” feature for meme-fueled calculations.</span>
+      </li>
+      <li>Animated Turtle Art: Butterflies & Cars<br>
+        <span class="desc">Exploring creative coding with Python’s turtle; whimsical, colorful shapes and vehicles.</span>
+      </li>
+      <li>Flask-based Meme Gallery<br>
+        <span class="desc">Share and rate memes—built for effortless uploading, voting, and laughter.</span>
+      </li>
+      <li>CircleConnect Community Resource Platform<br>
+        <span class="desc">Connect & share: Find local events, borrow books/tools, offer volunteer help, build true community bonds[web:1].</span>
+      </li>
+      <li>Skill-Share Portal<br>
+        <span class="desc">Teach and learn skills with friends—cooking, coding, anything! Exchange knowledge, boost creativity[web:1].</span>
+      </li>
+      <li>Event Manager Dashboard<br>
+        <span class="desc">Organize meetups, trips, and parties in one cool place. Members can create, RSVP, and chat about plans.</span>
+      </li>
+      <li>Surreal Meme Polls & Voting App<br>
+        <span class="desc">Let your community vote on wild ideas—with results shown in humorous charts and animated infographics[web:14][web:15].</span>
+      </li>
+      <li>Animated Connection Circle Map<br>
+        <span class="desc">Beautiful interactive map showing all community connections, members, and fun facts—visualizing your growing network[web:6][web:9].</span>
+      </li>
+      <li>Digital Community Newsletter Builder<br>
+        <span class="desc">Drag & drop to make brilliant newsletters, announce updates, and share stories quickly and easily[web:1].</span>
+      </li>
+      <li>Eco-Mission Tracker<br>
+        <span class="desc">Track, visualize, and share local green actions—tree plantings, cleanups, recycling, and small challenges for change.</span>
+      </li>
+      <li>Photo Timeline Generator<br>
+        <span class="desc">Pick a topic, upload memories, and build gorgeous time-ordered photo walls and group stories.</span>
+      </li>
+    </ul>
+    <h3>Project Suggestions? Join and Share!</h3>
+    <p>
+      We welcome bold new ideas—your creativity makes this space thrive!
+      Suggest your project or join us to help code, design, or test. Every voice matters.
+    </p>
+  </main>
+  <footer>
+    <p>&copy; 2025 circleconnect</p>
+  </footer>
+  <script>
+    // Premium: Animated particles background
+    function randomInRange(a, b) {
+      return a + Math.random() * (b - a);
+    }
+    const particleColors = ["#eab308", "#2980b9", "#ffd700", "#96e6a1"];
+    const nParticles = 19;
+    const projectBg = document.getElementById("project-bg");
+    for (let i = 0; i < nParticles; i++) {
+      const p = document.createElement("div");
+      p.classList.add("particle");
+      const size = randomInRange(18, 44);
+      p.style.width = size + "px";
+      p.style.height = size + "px";
+      p.style.left = randomInRange(0, 95) + "vw";
+      p.style.animationDelay = (Math.random() * 7) + "s";
+      p.style.background = `radial-gradient(circle at 30% 50%, ${particleColors[i % particleColors.length]}, transparent 70%)`;
+      projectBg.appendChild(p);
+    }
+  </script>
+</body>
+</html>

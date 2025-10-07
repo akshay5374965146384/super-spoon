@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circleconnect login & Registration Form</title>
+  <!-- Favicon / Logo -->
+  <link rel="icon" href="logo.jpg" type="jpg">
+  <link rel='stylesheet'
+    href='https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0'>
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- ✅ Forgot Password Modal CSS -->
+  <style>
+    .forgot-modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .forgot-content {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .forgot-content h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .forgot-content p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .forgot-content input {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .forgot-content button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .forgot-content button:hover {
+      background: #0056b3;
+    }
+
+    .forgot-close {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .forgot-close:hover {
+      color: red;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <span class="hamburger-btn material-symbols-rounded">menu</span>
+    <a href="#" class="logo">
+      <img src="Images/logo.jpg" alt="logo">
+      <h2>CircleConnect</h2>
+    </a>
+    <ul class="links">
+      <span class="close-btn material-symbols-rounded">close</span>
+      <li>Welcome to CircleConnect group website</li>
+    </ul>
+    <button class="login-btn">LOG IN</button>
+  </nav>
+</header>
+
+<div class="blur-bg-overlay"></div>
+<div class="form-popup">
+  <span class="close-btn material-symbols-rounded">close</span>
+  <div class="form-box login">
+    <div class="form-details">
+      <h2>Welcome Back</h2>
+      <p>Please log in using your personal information to stay connected with us.</p>
+    </div>
+    <div class="form-content">
+      <h2>LOGIN</h2>
+      <form id="loginForm">
+        <div class="input-field">
+          <input type="text" id="login-username" required>
+          <label>Email / Username</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required>
+          <label>Password</label>
+        </div>
+        <!-- 🔹 Forgot Password Trigger -->
+        <a href="#" class="forgot-pass-link" id="forgotPasswordBtn">Forgot password?</a>
+        <button type="submit">Log In</button>
+        <p id="error-msg" style="color:red; font-size:14px; margin-top:5px;"></p>
+      </form>
+      <div class="bottom-link">
+        Don't have an account?
+        <a href="#" id="signup-link">Signup</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-box signup">
+    <div class="form-details">
+      <h2>Create Account</h2>
+      <p>To become a part of our community, please sign up using your personal information.</p>
+    </div>
+    <div class="form-content">
+      <h2>SIGNUP</h2>
+      <form id="signupForm">
+        <div class="input-field">
+          <input type="text" id="signup-username" required>
+          <label>Enter your name</label>
+        </div>
+        <div class="input-field">
+          <input type="password" required>
+          <label>Create password</label>
+        </div>
+        <div class="policy-text">
+          <input type="checkbox" id="policy" required>
+          <label for="policy">
+            I agree the
+            <a href="#" class="option">Terms & Conditions</a>
+          </label>
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      <div class="bottom-link">
+        Already have an account?
+        <a href="#" id="login-link">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Forgot Password Modal -->
+<div class="forgot-modal" id="forgotModal">
+  <div class="forgot-content">
+    <span class="forgot-close" id="forgotClose">&times;</span>
+    <h2>Reset Password</h2>
+    <p>Enter your registered email address and we'll send you a reset link.</p>
+    <form id="forgotForm">
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Send Reset Link</button>
+    </form>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+<!-- ✅ Forgot Password JavaScript -->
+<script>
+  const forgotBtn = document.getElementById("forgotPasswordBtn");
+  const forgotModal = document.getElementById("forgotModal");
+  const forgotClose = document.getElementById("forgotClose");
+  const forgotForm = document.getElementById("forgotForm");
+
+  forgotBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    forgotModal.style.display = "flex";
+  });
+
+  forgotClose.addEventListener("click", () => {
+    forgotModal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === forgotModal) {
+      forgotModal.style.display = "none";
+    }
+  });
+
+  forgotForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("A password reset link has been sent to your email.");
+    forgotModal.style.display = "none";
+  });
+
+  // ✅ Login Functionality Implementation
+  const loginForm = document.getElementById("loginForm");
+  const errorMsg = document.getElementById("error-msg");
+
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const username = document.getElementById("login-username").value.trim();
+    const password = document.getElementById("login-password").value.trim();
+
+    if (username === "admin" && password === "12345") {
+      localStorage.setItem("loggedInUser", username);
+      localStorage.setItem("isLoggedIn", "true");
+      window.location.href = "index.html";
+    } else {
+      errorMsg.textContent = "Invalid username or password!";
+    }
+  });
+
+  // ✅ अगर पहले से login है तो direct index.html भेजो
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>

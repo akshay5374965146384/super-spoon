@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tours & Travels | Circle Connect</title>
+<!-- Favicon / Logo -->
+<link rel="icon" href="logo.jpg" type="jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary:#0f2027; --accent:#2c5364; --highlight:#00c6ff;
+  --bg-light:#f0f6fc; --glass-bg:rgba(255,255,255,0.15); --glass-border:rgba(255,255,255,0.25);
+  --shadow:0 12px 36px rgba(0,0,0,0.2); --white:#fff; --golden:#f8d36e;
+  --social-color:#00c6ff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  overflow-x:hidden;line-height:1.6;scroll-behavior:smooth;
+  background: linear-gradient(135deg, #0f2027, #2c5364, #00c6ff);
+  background-size: 600% 600%;
+  animation:gradientBG 20s ease infinite;
+  color:#222;
+}
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+header{
+  background:linear-gradient(120deg,var(--primary),var(--accent));
+  color:var(--white); padding:2.8rem 1rem; text-align:center;
+  box-shadow:0 12px 36px rgba(0,0,0,0.2); border-radius:0 0 40px 40px;
+  transition:all 0.3s ease;
+}
+header.shrink{padding:1.2rem 1rem; border-radius:0 0 20px 20px;}
+header h1{font-size:3.2rem;letter-spacing:0.08em;text-shadow:0 4px 20px rgba(0,0,0,0.4);}
+header.shrink h1{font-size:2.2rem;}
+nav{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);padding:1.2rem 0;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);
+  border-bottom:2px solid var(--highlight);transition: all 0.3s ease;
+}
+nav.shrink{padding:0.6rem 0;}
+nav a{
+  margin:0 20px;text-decoration:none;font-weight:600;font-size:1.1rem;
+  background:linear-gradient(90deg,var(--highlight),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;transition:all 0.35s ease;
+}
+nav a.active{color:var(--highlight);}
+nav a:hover{transform:translateY(-3px);}
+nav a::after{content:"";position:absolute;width:0;height:3px;background:var(--golden);left:0;bottom:-8px;border-radius:4px;transition:width 0.3s ease;}
+nav a:hover::after{width:100%;}
+
+.hero{
+  position:relative;height:65vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:3.2rem;font-weight:900;color:var(--white);text-shadow:3px 3px 15px rgba(0,0,0,0.85);
+  border-radius:28px;margin:2.5rem;overflow:hidden;transition: background 1s ease-in-out;perspective:1000px;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;background: linear-gradient(120deg, rgba(15,32,39,0.65), rgba(44,83,100,0.55));
+  border-radius:28px;animation:gradientMove 15s ease-in-out infinite alternate;
+  z-index:0;
+}
+.hero span{position:relative; z-index:1; min-height:50px; opacity:0; animation:fadeIn 1s forwards;}
+.hero-buttons{margin-top:1.5rem;z-index:1;}
+.hero-buttons a{
+  display:inline-block;margin:0 12px;padding:0.8rem 2rem;border-radius:30px;
+  background:linear-gradient(90deg,var(--highlight),var(--accent));
+  color:#fff;font-weight:600;text-decoration:none;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);transition:all 0.3s ease;
+}
+.hero-buttons a:hover{transform:translateY(-5px) scale(1.1);box-shadow:0 0 25px var(--highlight),0 0 35px var(--accent);}
+.hero-buttons a:active{transform:scale(0.95);}
+
+.particles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+
+.container{
+  max-width:1100px;margin:3rem auto;padding:3rem;border-radius:28px;
+  background:var(--glass-bg);border:1.5px solid var(--glass-border);
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);backdrop-filter:blur(18px);text-align:center;
+  transition: transform 0.5s ease;
+}
+.container h2{font-size:2.5rem;margin-bottom:1.2rem;color:var(--accent);}
+.container p{font-size:1.2rem;color:#333;}
+
+.card-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:2.5rem;}
+.card{
+  background:var(--white);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  padding:2rem;text-align:left;transition:all 0.4s ease, box-shadow 0.3s ease;opacity:0; transform:translateY(40px);cursor:pointer;
+}
+.card.visible{opacity:1; transform:translateY(0); animation:fadeIn 1s forwards;}
+.card:hover{transform:translateY(-10px); box-shadow:0 20px 50px rgba(0,0,0,0.35); border:1px solid var(--highlight);}
+.card:active{transform:scale(0.97);}
+
+footer{
+  margin:3rem 0 2rem;text-align:center;font-size:1rem;font-weight:600;color:#666;position:relative;
+}
+footer::before{
+  content:""; display:block;width:80%;height:3px;background:linear-gradient(to right,var(--highlight),var(--accent));margin:0 auto 1rem;border-radius:50px;
+}
+.social-icons{margin-top:1rem;}
+.social-icons a{margin:0 10px;color:var(--social-color);font-size:1.5rem;transition:0.3s;}
+.social-icons a:hover{color:#fff;text-shadow:0 0 15px var(--highlight),0 0 25px var(--accent); transform:translateY(-5px);}
+
+@keyframes gradientMove{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);}}
+@media(max-width:768px){
+  header h1{font-size:2.2rem;}
+  .hero{font-size:1.9rem;margin:1.2rem;height:50vh;}
+  .container{padding:2rem;margin:1.2rem;}
+  .container h2{font-size:1.8rem;}
+  .container p{font-size:1rem;}
+}
+</style>
+</head>
+<body>
+
+<audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop autoplay></audio>
+<button id="muteBtn" style="position:fixed;top:10px;right:10px;padding:0.5rem 1rem;border:none;border-radius:8px;background:#222;color:#fff;cursor:pointer;z-index:1000;">Mute</button>
+
+<header id="header"><h1>Tours & Travels</h1></header>
+
+<nav id="navbar">
+  <a href="index.html" class="active">Home</a>
+  <a href="projects.html">Projects</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="tours_and_travels.html">Tours & Travels</a>
+  <a href="about.html">About</a>
+  <a href="join.html">Join WhatsApp Group</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<div class="hero" id="hero">
+  <span id="hero-text"></span>
+  <div class="hero-buttons">
+    <a href="tours_and_travels.html">Book Now</a>
+    <a href="projects.html">Explore More</a>
+  </div>
+  <div class="particles" id="particles"></div>
+</div>
+
+<div class="container" id="tours">
+  <h2>Connecting Communities Through Travel & Creativity</h2>
+  <p>Circle Connect is your gateway to unforgettable journeys, collaborative projects, and a vibrant gallery of shared memories.</p>
+
+  <div class="card-section">
+    <div class="card"><h3>🌍 Explore Destinations</h3><p>Discover breathtaking locations and unique cultural experiences.</p></div>
+    <div class="card"><h3>🤝 Community Projects</h3><p>Collaborate with like-minded people on exciting initiatives.</p></div>
+    <div class="card"><h3>📸 Creative Gallery</h3><p>Share and showcase your travel memories, artwork, and stories.</p></div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Circle Connect. Made with ❤️ by Akshay & Team.
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+
+<script>
+// Hero Typing & Background
+const hero=document.getElementById('hero');
+const heroText=document.getElementById('hero-text');
+const texts=['Welcome to Circle Connect','Discover Amazing Destinations','Create Memories with Community'];
+const images=['https://source.unsplash.com/1600x800/?travel,adventure','https://source.unsplash.com/1600x800/?luxury,travel','https://source.unsplash.com/1600x800/?nature,travel'];
+let textIndex=0,charIndex=0,typingSpeed=100,deletingSpeed=50,delayBetween=2500;
+function typeText(){
+  if(charIndex<texts[textIndex].length){heroText.textContent+=texts[textIndex].charAt(charIndex);charIndex++;setTimeout(typeText,typingSpeed);}
+  else{setTimeout(deleteText,delayBetween);}
+}
+function deleteText(){
+  if(charIndex>0){heroText.textContent=texts[textIndex].substring(0,charIndex-1);charIndex--;setTimeout(deleteText,deletingSpeed);}
+  else{textIndex=(textIndex+1)%texts.length;hero.style.backgroundImage=`url('${images[textIndex]}')`;setTimeout(typeText,200);}
+}
+typeText();
+
+// Navbar Shrink
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{if(window.scrollY>80){header.classList.add('shrink');document.getElementById('navbar').classList.add('shrink');} else {header.classList.remove('shrink');document.getElementById('navbar').classList.remove('shrink');}});
+
+// Navbar Active Highlight
+const navLinks=document.querySelectorAll('nav a');
+navLinks.forEach(link=>link.addEventListener('click',()=>{navLinks.forEach(l=>l.classList.remove('active'));link.classList.add('active');}));
+
+// Card Scroll Animation
+const cards=document.querySelectorAll('.card');
+function revealCards(){const triggerBottom=window.innerHeight*0.85;cards.forEach(card=>{const cardTop=card.getBoundingClientRect().top;if(cardTop<triggerBottom){card.classList.add('visible');}});}
+window.addEventListener('scroll',revealCards);
+window.addEventListener('load',revealCards);
+
+// Hero Parallax
+window.addEventListener('scroll',()=>{const scrollY=window.scrollY;hero.style.transform=`translateY(${scrollY*0.3}px)`;});
+
+// Particles
+const particlesContainer=document.getElementById('particles');
+for(let i=0;i<80;i++){
+  const p=document.createElement('div');
+  p.style.position='absolute';
+  p.style.width=p.style.height=Math.random()*6+4+'px';
+  p.style.background='rgba(255,255,255,'+Math.random()+')';
+  p.style.borderRadius='50%';
+  p.style.top=Math.random()*100+'%';
+  p.style.left=Math.random()*100+'%';
+  p.style.animation='float '+(Math.random()*5+5)+'s linear infinite';
+  particlesContainer.appendChild(p);
+}
+
+// Mute/Unmute
+const bgMusic=document.getElementById('bg-music');
+const muteBtn=document.getElementById('muteBtn');
+muteBtn.addEventListener('click',()=>{bgMusic.paused?bgMusic.play():bgMusic.pause();muteBtn.textContent=bgMusic.paused?'Unmute':'Mute';});
+
+// Click Sound Effect
+const clickSound=new Audio('https://www.soundjay.com/buttons/sounds/button-16.mp3');
+document.querySelectorAll('.hero-buttons a,.card').forEach(el=>{el.addEventListener('click',()=>{clickSound.play();});});
+</script>
+
+</body>
+</html>
